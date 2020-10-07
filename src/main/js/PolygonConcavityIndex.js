@@ -1,7 +1,5 @@
 // Task:   https://app.codility.com/programmers/lessons/99-future_training/polygon_concavity_index/
-// Result: https://app.codility.com/demo/results/trainingCZA6WB-K4R/
-
-// .. still not 100% :(
+// Result: https://app.codility.com/demo/results/trainingQ2RS5E-FUB/
 
 function solution(A) {
     const normIndex = i => (A.length  + i % A.length) % A.length
@@ -21,16 +19,12 @@ function solution(A) {
         else return nextOppositeTurn(nt, dir, remain-1)   
     }
 
-    let leftEdge = a(0).x
-    let leftmostTurn = 0
-    for(let i =nextTurn(0); i <= A.length ; i = nextTurn(i+1)){
-        if(leftEdge > a(i).x ) {
-            leftEdge = a(i).x
-            leftmostTurn = i
-        }
+    let left = 0
+    for(let i = 0; i < A.length ; i++ ){
+        if( a(left).x > a(i).x ) left = i 
     }
 
-    const res = nextOppositeTurn(leftmostTurn, turnDir(leftmostTurn), A.length * 2 )
+    const res = nextOppositeTurn(nextTurn(left), turnDir(nextTurn(left)), A.length * 2 )
     return res<0 ? -1 : normIndex(res)
 }
 
