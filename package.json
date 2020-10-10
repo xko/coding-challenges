@@ -1,0 +1,14 @@
+{
+  "name": "codility-lessons",
+  "private": true,
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "mocha":{
+    "spec": "src/test/js/*.js"
+  }
+}

@@ -41,3 +41,5 @@ function sinSign(inVector,outVector) {
 function dotProd(a,b) {
     return a.x*b.x + a.y*b.y
 }
+
+module.exports = solution
