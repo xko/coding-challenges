@@ -1,3 +1,4 @@
+package NumberSolitaire
 // Task:   https://app.codility.com/programmers/lessons/17-dynamic_programming/number_solitaire/
 // Result: https://app.codility.com/demo/results/trainingGE27KH-YHZ/
 

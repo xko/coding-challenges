@@ -1,3 +1,4 @@
+package MaxCounters
 // Task:   https://app.codility.com/programmers/lessons/4-counting_elements/max_counters/
 // Result: https://app.codility.com/demo/results/trainingNEBRJC-GYY/
 
