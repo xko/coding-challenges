@@ -19,8 +19,8 @@ class SlalomSkiingSpec extends AnyFunSpec {
           3157, 4615, 581, 1402, 9662, 1018, 7817, 4786, 6094, 7924, 8760, 1160, 3881, 4272, 391, 1483, 3361, 314, 8840, 7986, 2519, 8058, 2066, 393,
           584, 1800, 7230, 4681, 1133, 2805, 6540, 9746, 8997, 6458, 7739, 3527, 1277, 3011, 332, 6877)
         val start = System.nanoTime()
-        assert(Solution.solution(a) ==50)// should pass w.o. exception
-        assert((System.nanoTime() - start) / 1e9d < .5) // 3 seconds
+        assert(Solution.solution(a) ==50)
+        assert((System.nanoTime() - start) / 1e9d < .5)
       }
       it("#2") {
         val a = Array(18948, 479945, 396355, 51103, 635416, 57451, 59199, 62723, 106714, 803690, 126196, 595595, 539328, 143216, 144830,
@@ -41,7 +41,17 @@ class SlalomSkiingSpec extends AnyFunSpec {
           969595, 971402, 374613, 981617, 698644, 744665, 998874)
         val start = System.nanoTime()
         Solution.solution(a) // should pass w.o. exception
-        assert((System.nanoTime() - start) / 1e9d < .5) // 3 seconds
+        assert((System.nanoTime() - start) / 1e9d < .5)
+      }
+
+      describe("big random") {
+        it("100 000"){
+          val r = scala.util.Random
+          val a = Array.fill(100000){r.nextInt(1000000000)}
+          val start = System.nanoTime()
+          Solution.solution(a) // should pass w.o. exception
+          assert((System.nanoTime() - start) / 1e9d < 1)
+        }
       }
     }
   }
@@ -74,6 +84,8 @@ class SlalomSkiingSpec extends AnyFunSpec {
         assert(Solution.solution(a) == 19)
       }
     }
+
+
   }
 
 
