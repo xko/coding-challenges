@@ -2,6 +2,7 @@
 
 /target/
 /project/target/
+/project/project/target/
 
 /.metals/
 /.vscode/
