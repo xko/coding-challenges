@@ -30,7 +30,7 @@ object Solution {
 
   case class LIS(candidates: IndexedSeq[Candidate], implicit val ordering: Ordering[Candidate]) {
 
-    def + (nextEl: Int): LIS ={
+    def :+ (nextEl: Int): LIS ={
       val (prefix,rest) = candidates.splitWhere(nextEl)
       val insert = Candidate(nextEl, prefix.len + 1)
       copy( (prefix :+ insert) ++ rest.dropTo(insert)(ByLen) )
@@ -49,9 +49,9 @@ object Solution {
   def solve(i: Int, a:Array[Int], straight:LIS = LIS(empty,Inc), turn1:LIS = LIS(empty,Dec), turn2:LIS = LIS(empty,Inc)): Int = {
     if(i >= a.length) turn2.size
     else {
-      val s =  straight +  a(i)
-      val t1 = if(s.size > straight.size) turn1 + a(i) ++ s  else turn1 + a(i)
-      val t2 = if(t1.size > turn1.size)   turn2 + a(i) ++ t1 else turn2 + a(i)
+      val s =  straight :+  a(i)
+      val t1 = if(s.size > straight.size) (turn1 :+ a(i)) ++ s  else turn1 :+ a(i)
+      val t2 = if(t1.size > turn1.size)   (turn2 :+ a(i)) ++ t1 else turn2 :+ a(i)
       solve(i+1, a, s, t1, t2)
     }
   }
