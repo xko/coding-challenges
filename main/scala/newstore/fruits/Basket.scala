@@ -19,5 +19,5 @@ object ApplePromotion extends Promotion {
 object OrangePromotion extends Promotion {
   override def discount(basket: Basket): Int = basket.goods.collect {
     case a: Orange.type => a
-  }.grouped(3).flatMap(_.lift(1)).map(_.priceInCents).sum
+  }.grouped(3).flatMap(_.lift(2)).map(_.priceInCents).sum
 }

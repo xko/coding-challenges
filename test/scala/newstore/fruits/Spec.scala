@@ -30,9 +30,9 @@ class Spec extends AnyFlatSpec with Matchers {
       sum(Apple, Apple, Orange, Orange)
   }
 
-  "orange promotion" should "not discount 4th" in {
-    Basket(List(Apple, Orange, Orange, Orange, Apple, Orange), Seq(OrangePromotion) ).total shouldBe
-      sum(Apple, Apple, Orange, Orange, Orange)
+  "orange promotion" should "not discount 4th and 5th" in {
+    Basket(List(Apple, Orange, Orange, Orange, Apple, Orange, Orange), Seq(OrangePromotion) ).total shouldBe
+      sum(Apple, Apple, Orange, Orange, Orange, Orange)
   }
 
   "orange promotion" should "combine with apple promotion" in {
