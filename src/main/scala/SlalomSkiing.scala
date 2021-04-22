@@ -13,7 +13,6 @@ object Solution {
 
   val Inc:   Ordering[Candidate] = Ordering.by(_.tip)
   val Dec:   Ordering[Candidate] = Inc.reverse
-  val ByLen: Ordering[Candidate] = Ordering.by(_.len)
 
   val empty:IndexedSeq[Candidate] = Vector()
 
@@ -33,7 +32,7 @@ object Solution {
     def :+ (nextEl: Int): LIS ={
       val (prefix,rest) = candidates.splitWhere(nextEl)
       val insert = Candidate(nextEl, prefix.len + 1)
-      copy( (prefix :+ insert) ++ rest.dropTo(insert)(ByLen) )
+      copy( (prefix :+ insert) ++ rest.dropWhile(_.len <= insert.len) )
     }
 
     def size: Int = candidates.len
@@ -42,7 +41,7 @@ object Solution {
       val insert = incoming.candidates.last
       val (prefix,rest) = candidates.splitWhere(insert)
       if (prefix.len >= insert.len) this
-      else copy( (prefix :+ insert) ++ rest.dropTo(insert)(ByLen) )
+      else copy( (prefix :+ insert) ++ rest.dropWhile(_.len <= insert.len) )
     }
   }
 
