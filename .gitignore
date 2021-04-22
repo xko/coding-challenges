@@ -1,10 +1,8 @@
-/.idea/
+/.idea
+/.vscode
+/.metals
+/.bsp
 
-/target/
-/project/target/
-/project/project/target/
-
-/.metals/
-/.vscode/
+**/target/
 
 /node_modules
