@@ -9,7 +9,8 @@ import scala.math.Ordering
 object Solution {
 
   case class Candidate(tip: Int, len: Int )
-  implicit def candidate1(tip:Int) = Candidate(tip, 1)
+
+  def cand1(tip:Int) = Candidate(tip, 1)
 
   val Inc:   Ordering[Candidate] = Ordering.by(_.tip)
   val Dec:   Ordering[Candidate] = Inc.reverse
@@ -30,7 +31,7 @@ object Solution {
   case class LIS(candidates: IndexedSeq[Candidate], implicit val ordering: Ordering[Candidate]) {
 
     def :+ (nextEl: Int): LIS ={
-      val (prefix,rest) = candidates.splitWhere(nextEl)
+      val (prefix,rest) = candidates.splitWhere(cand1(nextEl))
       val insert = Candidate(nextEl, prefix.len + 1)
       copy( (prefix :+ insert) ++ rest.dropWhile(_.len <= insert.len) )
     }
