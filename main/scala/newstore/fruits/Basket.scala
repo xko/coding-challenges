@@ -11,13 +11,9 @@ trait Promotion {
 
 
 object ApplePromotion extends Promotion {
-  override def discount(basket: Basket): Int = basket.goods.collect {
-    case a: Apple.type => a
-  }.length / 2 * Apple.priceInCents
+  override def discount(basket: Basket): Int = basket.goods.count(_ == Apple) / 2 * Apple.priceInCents
 }
 
 object OrangePromotion extends Promotion {
-  override def discount(basket: Basket): Int = basket.goods.collect {
-    case a: Orange.type => a
-  }.length / 3 * Orange.priceInCents
+  override def discount(basket: Basket): Int = basket.goods.count(_ == Orange) / 3 * Orange.priceInCents
 }
