@@ -8,6 +8,7 @@ import scala.collection.immutable._
 import scala.io._
 
 object Result {
+  val mod = 1000000007
 
   /*
    * Complete the 'ways' function below.
@@ -44,7 +45,7 @@ object Result {
       if(t==total) stable + canIncManyWays.size
       else {
         val considerNext = canIncManyWays.flatMap(waysToIncrement)
-        dynamic( stable + considerNext.count( _ == List(1,1) ),
+        dynamic( stable % mod + considerNext.count(_ == List(1, 1)),
                  considerNext.filterNot(_ == List(1,1)),
                  t+1
                )
