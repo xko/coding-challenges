@@ -17,16 +17,24 @@ object Result {
    *  2. INTEGER k
    */
 
-  def ways(total: Int, k: Int): Int = firstPairs(total,k).size
+  def ways(total: Int, k: Int): Int = {
 
-  def firstPairs(total: Int, k: Int): List[(Int,Int)] = {
-    if(total == 1) List((1,k))
-    else firstPairs(total - 1, k) flatMap {
-      case (a,b) if a+1 <= b => (1,a) :: (a+1,b) :: Nil
-      case (a,_) => (1,a) :: Nil
+    // There are 2 ways:
+    // - prepend 1 - always possible
+    // - increment one element -  only the head and only if next one is greater
+    //   (keeps it sorted to avoid counting permutations)
+    // Means we only ever need to see up to 2 head elements
+    def waysToIncrement(headPair: List[Int]): List[List[Int]] = headPair match {
+      case a :: b :: Nil if a < b => List(List(1, a), List(a + 1, b))
+      case a :: Nil      if a < k => List(List(1, a), List(a + 1))
+      case a :: _                 => List(List(1, a))
     }
+    def allHeadPairs(total: Int): List[List[Int]] = {
+      if(total==1) List(List(1))
+      else allHeadPairs(total-1).flatMap(waysToIncrement)
+    }
+    allHeadPairs(total).size
   }
-
 
 }
 
