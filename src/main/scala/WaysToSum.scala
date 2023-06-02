@@ -3,6 +3,7 @@ package WaysToSum
 // Result: ...........
 
 import java.io._
+import scala.annotation.tailrec
 import scala.collection.immutable._
 import scala.io._
 
@@ -33,7 +34,23 @@ object Result {
       if(total==1) List(List(1))
       else allHeadPairs(total-1).flatMap(waysToIncrement)
     }
-    allHeadPairs(total).size
+
+    //allHeadPairs(total).size // slow, stays here for reference
+
+    // If it starts with 1,1, we can only prepend another 1 - will not change the result
+    // No need to look at such kind in future iterations, enough to count them
+    @tailrec
+    def dynamic(stable: Int, canIncManyWays:List[List[Int]], t: Int ):Int = {
+      if(t==total) stable + canIncManyWays.size
+      else {
+        val considerNext = canIncManyWays.flatMap(waysToIncrement)
+        dynamic( stable + considerNext.count( _ == List(1,1) ),
+                 considerNext.filterNot(_ == List(1,1)),
+                 t+1
+               )
+      }
+    }
+    dynamic(0,List(List(1)),1)
   }
 
 }
