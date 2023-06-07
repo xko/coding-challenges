@@ -1,6 +1,6 @@
-name := "codility-lessons"
+name := "xko-challenges"
 version := "0.1"
 
-scalaVersion := "2.12.12"
+scalaVersion := "2.13.10"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
