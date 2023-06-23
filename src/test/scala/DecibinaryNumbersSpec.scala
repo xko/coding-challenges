@@ -1,5 +1,6 @@
 import org.scalatest.funspec.AnyFunSpec
 import DecibinaryNumbers.Result._
+import DecibinaryNumbers.Solution._
 import org.scalatest.matchers.should.Matchers
 
 class DecibinaryNumbersSpec extends AnyFunSpec with Matchers{
@@ -14,9 +15,17 @@ class DecibinaryNumbersSpec extends AnyFunSpec with Matchers{
     dbinsPerValue(12) shouldBe 18
   }
 
-  it("decodes decibinaries to decimal") {
-    decode(0::0::0::1::Nil) shouldBe 8
-    decode(3::2::Nil) shouldBe 7
+  it("increments as expected") {
+    increment(fromLong(31)).map(toLong)  shouldBe 32 :: 40 :: Nil
+    increment(fromLong(22)).map(toLong)  shouldBe 23 :: Nil
+    increment(fromLong(111)).map(toLong) shouldBe 112 :: 120 :: 200 :: 1000 :: Nil
   }
 
+  it("solves examples") {
+    decibinaryNumbers(8) shouldBe 12
+    decibinaryNumbers(23) shouldBe 23
+    decibinaryNumbers(19) shouldBe 102
+    decibinaryNumbers(16) shouldBe 14
+
+  }
 }
